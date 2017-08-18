@@ -29,6 +29,7 @@ export class HomePage {
     features: [],
     type: "FeatureCollection",
   };
+  public time: number;
 
   constructor(
       private http: Http,
