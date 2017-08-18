@@ -1,6 +1,17 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+interface IGeoDataProperties {
+  id: number;
+  name: string;
+  link: string;
+  icon: string;
+  iconSize: string;
+  town: string;
+  street: string;
+  phone: string;
+}
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
