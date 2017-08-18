@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Http } from "@angular/http";
 import { GenericGeoJSONFeatureCollection } from "@yaga/generic-geojson";
+import { CircleMarkerDirective } from "@yaga/leaflet-ng2";
 import { Point } from "geojson";
 import { Point as LeafletPoint } from "leaflet";
 
@@ -19,7 +20,7 @@ interface IGeoDataProperties {
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
   public tileUrl: string = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   public readonly startLat: number = 50.855;
   public readonly startLng: number = 7.071;
@@ -30,6 +31,9 @@ export class HomePage {
     type: "FeatureCollection",
   };
   public time: number;
+
+  @ViewChild(CircleMarkerDirective)
+  public cirlceMarker: CircleMarkerDirective<any>;
 
   constructor(
       private http: Http,
@@ -46,5 +50,9 @@ export class HomePage {
         parseInt(splittedValues[0], 10) / divisor,
         parseInt(splittedValues[1], 10) / divisor
     );
+  }
+
+  public ngAfterViewInit() {
+    this.cirlceMarker.openTooltip();
   }
 }
