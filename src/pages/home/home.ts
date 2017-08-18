@@ -5,6 +5,8 @@ import { CircleMarkerDirective } from "@yaga/leaflet-ng2";
 import { Point } from "geojson";
 import { Point as LeafletPoint } from "leaflet";
 
+import { gradients } from './gradients';
+
 interface IGeoDataProperties {
   id: number;
   name: string;
@@ -31,6 +33,7 @@ export class HomePage implements AfterViewInit {
     type: "FeatureCollection",
   };
   public time: number;
+  public gradients = gradients;
 
   @ViewChild(CircleMarkerDirective)
   public cirlceMarker: CircleMarkerDirective<any>;
