@@ -1,6 +1,9 @@
 <ion-content>
   <yaga-map [lat]="startLat" [lng]="startLng" [zoom]="startZoom">
     <yaga-tile-layer [url]="tileUrl"></yaga-tile-layer>
+    <yaga-marker *ngFor="let poi of pois.features" [lat]="poi.geometry.coordinates[1]" [lng]="poi.geometry.coordinates[0]">
+      <yaga-icon [iconUrl]="poi.properties.icon"></yaga-icon>
+    </yaga-marker>
 
     <yaga-attribution-control></yaga-attribution-control>
     <yaga-scale-control [imperial]="true" [metric]="true"></yaga-scale-control>
