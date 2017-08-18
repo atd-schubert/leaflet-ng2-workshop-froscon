@@ -6,6 +6,7 @@ import { Point } from "geojson";
 import { Point as LeafletPoint } from "leaflet";
 
 import { gradients } from './gradients';
+import { ShuttleService } from "../../app/shuttle.service";
 
 interface IGeoDataProperties {
   id: number;
@@ -40,11 +41,14 @@ export class HomePage implements AfterViewInit {
 
   constructor(
       private http: Http,
+      private shuttleService: ShuttleService,
   ) {
     this.http.request("assets/pois.geojson")
         .subscribe((event): void => {
           this.pois = event.json() as GenericGeoJSONFeatureCollection<Point, IGeoDataProperties>;
         });
+    this.shuttleService.shuttleTimeEvent.subscribe(value => this.time);
+    this.time = this.shuttleService.calcShuttleMinute();
   }
 
   public parsePoint(str: string, divisor: number = 1): LeafletPoint {

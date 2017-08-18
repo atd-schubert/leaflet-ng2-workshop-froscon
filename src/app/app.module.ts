@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { YagaModule } from '@yaga/leaflet-ng2';
 
 import { MyApp } from './app.component';
+import { ShuttleService } from "./shuttle.service";;
 import { HomePage } from '../pages/home/home';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
+    ShuttleService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
