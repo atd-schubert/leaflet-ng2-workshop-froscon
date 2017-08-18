@@ -6,6 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public tileUrl: string = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   constructor(public navCtrl: NavController) {
 
