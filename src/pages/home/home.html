@@ -1,5 +1,5 @@
 <ion-content>
-  <yaga-map>
+  <yaga-map [lat]="startLat" [lng]="startLng" [zoom]="startZoom">
     <yaga-tile-layer [url]="tileUrl"></yaga-tile-layer>
 
     <yaga-attribution-control></yaga-attribution-control>
