@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from "@angular/http";
 import { GenericGeoJSONFeatureCollection } from "@yaga/generic-geojson";
 import { Point } from "geojson";
+import { Point as LeafletPoint } from "leaflet";
 
 interface IGeoDataProperties {
   id: number;
@@ -38,4 +39,11 @@ export class HomePage {
         });
   }
 
+  public parsePoint(str: string, divisor: number = 1): LeafletPoint {
+    const splittedValues: [string, string] = str.split("x") as [string, string];
+    return new LeafletPoint(
+        parseInt(splittedValues[0], 10) / divisor,
+        parseInt(splittedValues[1], 10) / divisor
+    );
+  }
 }
