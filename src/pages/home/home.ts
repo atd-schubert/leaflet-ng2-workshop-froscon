@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Http } from "@angular/http";
+import { GenericGeoJSONFeatureCollection } from "@yaga/generic-geojson";
+import { Point } from "geojson";
 
 interface IGeoDataProperties {
   id: number;
@@ -22,8 +24,18 @@ export class HomePage {
   public readonly startLng: number = 7.071;
   public readonly startZoom: number = 10;
 
-  constructor(public navCtrl: NavController) {
+  public pois: GenericGeoJSONFeatureCollection<Point, IGeoDataProperties> = {
+    features: [],
+    type: "FeatureCollection",
+  };
 
+  constructor(
+      private http: Http,
+  ) {
+    this.http.request("assets/pois.geojson")
+        .subscribe((event): void => {
+          this.pois = event.json() as GenericGeoJSONFeatureCollection<Point, IGeoDataProperties>;
+        });
   }
 
 }
