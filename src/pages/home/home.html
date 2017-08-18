@@ -3,6 +3,12 @@
     <yaga-tile-layer [url]="tileUrl"></yaga-tile-layer>
     <yaga-marker *ngFor="let poi of pois.features" [lat]="poi.geometry.coordinates[1]" [lng]="poi.geometry.coordinates[0]">
       <yaga-icon [iconSize]="parsePoint(poi.properties.iconSize)" [iconAnchor]="parsePoint(poi.properties.iconSize, 2)" [iconUrl]="poi.properties.icon"></yaga-icon>
+      <yaga-popup>
+        <h4>{{ poi.properties.name }}</h4>
+        <p>{{ poi.properties.street }}<br>{{ poi.properties.town }}</p>
+        <a ion-button href="{{ poi.properties.link }}" target="blank"><ion-icon name="link"></ion-icon></a>
+        <a *ngIf="poi.properties.phone" ion-button href="tel:{{ poi.properties.phone }}"><ion-icon name="call"></ion-icon></a>
+      </yaga-popup>
     </yaga-marker>
 
     <yaga-attribution-control></yaga-attribution-control>
